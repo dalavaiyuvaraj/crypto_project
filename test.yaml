@@ -1,0 +1,90 @@
+openapi: 3.0.0
+info:
+  title: Mempool Lightning Nodes Rankings API
+  version: 1.0.0
+paths:
+  /lightning/nodes/rankings/liquidity:
+    get:
+      summary: Get rankings of lightning nodes based on liquidity
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    publicKey:
+                      type: string
+                      description: Public key of the lightning node
+                    alias:
+                      type: string
+                      description: Alias of the lightning node
+                    capacity:
+                      type: integer
+                      description: Total capacity of the lightning node
+                    channels:
+                      type: integer
+                      description: Number of channels connected to the lightning node
+                    firstSeen:
+                      type: integer
+                      description: Unix timestamp when the node was first seen
+                    updatedAt:
+                      type: integer
+                      description: Unix timestamp when the node's data was last updated
+                    city:
+                      type: object
+                      properties:
+                        de:
+                          type: string
+                          description: City name in German
+                        en:
+                          type: string
+                          description: City name in English
+                        es:
+                          type: string
+                          description: City name in Spanish
+                        fr:
+                          type: string
+                          description: City name in French
+                        ja:
+                          type: string
+                          description: City name in Japanese
+                        pt-BR:
+                          type: string
+                          description: City name in Portuguese (Brazil)
+                        ru:
+                          type: string
+                          description: City name in Russian
+                        zh-CN:
+                          type: string
+                          description: City name in Simplified Chinese
+                    country:
+                      type: object
+                      properties:
+                        de:
+                          type: string
+                          description: Country name in German
+                        en:
+                          type: string
+                          description: Country name in English
+                        es:
+                          type: string
+                          description: Country name in Spanish
+                        fr:
+                          type: string
+                          description: Country name in French
+                        ja:
+                          type: string
+                          description: Country name in Japanese
+                        pt-BR:
+                          type: string
+                          description: Country name in Portuguese (Brazil)
+                        ru:
+                          type: string
+                          description: Country name in Russian
+                        zh-CN:
+                          type: string
+                          description: Country name in Simplified Chinese
