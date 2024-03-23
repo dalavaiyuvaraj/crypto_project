@@ -1,90 +1,71 @@
-openapi: 3.0.3
+openapi: 3.0.0
 info:
-  title: New Spec - OpenAPI 3.0
-  description: This is a sample description about this spec.
-  termsOfService: ''
-  contact:
-    email: ''
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Lightning Network Nodes Ranking API
   version: 1.0.0
-externalDocs:
-  description: Find out more about spec
-  url: ''
-servers:
-  - url: https://mempool.space
-    description: ''
-tags:
-  - name: Default
-    description: ''
 paths:
-  /api/v1/lightning/nodes/rankings/liquidity:
+  /lightning/nodes/rankings/liquidity:
     get:
-      description: ''
-      meta:
-        element: ''
-        originalPath: https://mempool.space/api/v1/lightning/nodes/rankings/liquidity
-      operationId: get-api-v1-lightning-nodes-rankings-liquidity
-      parameters: []
+      summary: Get rankings of Lightning Network nodes by liquidity
+      description: Retrieve a list of Lightning Network nodes ranked by their liquidity, along with relevant details.
       responses:
-        '200':
+        "200":
+          description: Successful response
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/liquidityranking"
-                  
+                  $ref: "#/components/schemas/LightningNode"
+
 components:
   schemas:
-    liquidityranking:
+    LightningNode:
       type: object
-      additionalProperties: false
-        properties:
-          alias:
-            type: string
-          capacity:
-            type: integer
-          channels:
-            type: integer
-          city:
-            anyOf:
-              - additionalProperties: false
-                  properties:
-                    de:
-                      type: string
-                    en:
-                      type: string
-                  required: []
-                  title: City
-                  type: object
-                  - type: 'null'
-          country:
-            anyOf:
-              - additionalProperties: false
-                  properties:
-                    de:
-                      type: string
-                    en:
-                      type: string
-                  required: []
-                  title: City
-                  type: object
-                - type: 'null'
-          firstSeen:
-            type: integer
-          iso_code:
-            anyOf:
-              - type: 'null'
-              - type: string
-          publicKey:
-            type: string
-          subdivision:
-            anyOf:
-              - type: 'null'
-              - type: string
-          updatedAt:
-            type: integer
-        required: []
-        title: APIV1LightningNodes
+      properties:
+        publicKey:
+          type: string
+          description: The public key identifying the Lightning Network node.
+        alias:
+          type: string
+          description: A human-readable alias for the node.
+        capacity:
+          type: integer
+          description: The total capacity of the node in satoshis.
+        channels:
+          type: integer
+          description: The number of channels the node has open.
+        firstSeen:
+          type: integer
+          description: The timestamp when the node was first seen.
+        updatedAt:
+          type: integer
+          description: The timestamp when the node's information was last updated.
+        city:
+          type: string
+          description: The city where the node is located, if available.
+        country:
+          type: object
+          properties:
+            de:
+              type: string
+            en:
+              type: string
+            es:
+              type: string
+            fr:
+              type: string
+            ja:
+              type: string
+            pt-BR:
+              type: string
+            ru:
+              type: string
+            zh-CN:
+              type: string
+          description: The country where the node is located, with translations.
+        iso_code:
+          type: string
+          description: The ISO code of the country where the node is located.
+        subdivision:
+          type: string
+          description: The subdivision (e.g., state or province) where the node is located, if available.
