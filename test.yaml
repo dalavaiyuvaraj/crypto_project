@@ -87,4 +87,4 @@ components:
           updatedAt:
             type: integer
         required: []
-        title: APIV1LightningNodesRankingsLiquidityGetResponseElement
+        title: APIV1LightningNodes
