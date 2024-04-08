@@ -1,0 +1,166 @@
+openapi: 3.0.0
+info:
+  title: Bitcoin Block Information API
+  description: An API for retrieving information about Bitcoin blocks.
+  version: 1.0.0
+paths:
+  /v1/blocks:
+    get:
+      summary: Get information about a Bitcoin block
+      description: Retrieve detailed information about a specific Bitcoin block identified by its ID.
+      parameters:
+        - name: block_id
+          in: path
+          description: The ID of the Bitcoin block
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BitcoinBlock'
+components:
+  schemas:
+    BitcoinBlock:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the Bitcoin block.
+        height:
+          type: integer
+          description: The height of the block in the blockchain.
+        version:
+          type: integer
+          description: The version of the block.
+        timestamp:
+          type: integer
+          description: The timestamp of the block's creation.
+        bits:
+          type: integer
+          description: The bits representing the block's difficulty target.
+        nonce:
+          type: integer
+          description: The nonce used to find the proof-of-work for the block.
+        difficulty:
+          type: number
+          description: The difficulty of finding the block's hash.
+        merkle_root:
+          type: string
+          description: The Merkle root of the transactions in the block.
+        tx_count:
+          type: integer
+          description: The number of transactions in the block.
+        size:
+          type: integer
+          description: The size of the block in bytes.
+        weight:
+          type: integer
+          description: The weight of the block.
+        previousblockhash:
+          type: string
+          description: The hash of the previous block in the blockchain.
+        mediantime:
+          type: integer
+          description: The median time of the block's creation based on the previous blocks.
+        stale:
+          type: boolean
+          description: Indicates whether the block is stale or not.
+        extras:
+          type: object
+          properties:
+            reward:
+              type: integer
+              description: The block reward in satoshis.
+            coinbaseRaw:
+              type: string
+              description: The raw data of the coinbase transaction.
+            orphans:
+              type: array
+              items:
+                type: string
+              description: List of orphaned blocks.
+            medianFee:
+              type: number
+              description: The median fee of transactions in the block.
+            feeRange:
+              type: array
+              items:
+                type: number
+              description: Range of transaction fees in the block.
+            totalFees:
+              type: integer
+              description: The total fees collected in the block.
+            avgFee:
+              type: number
+              description: The average fee per transaction in the block.
+            avgFeeRate:
+              type: number
+              description: The average fee rate per transaction in the block.
+            utxoSetChange:
+              type: integer
+              description: The change in the UTXO set after processing the block.
+            avgTxSize:
+              type: number
+              description: The average transaction size in the block.
+            totalInputs:
+              type: integer
+              description: The total number of inputs in transactions in the block.
+            totalOutputs:
+              type: integer
+              description: The total number of outputs in transactions in the block.
+            totalOutputAmt:
+              type: integer
+              description: The total amount of outputs in the block.
+            segwitTotalTxs:
+              type: integer
+              description: The total number of SegWit transactions in the block.
+            segwitTotalSize:
+              type: integer
+              description: The total size of SegWit transactions in the block.
+            segwitTotalWeight:
+              type: integer
+              description: The total weight of SegWit transactions in the block.
+            virtualSize:
+              type: number
+              description: The virtual size of the block.
+            coinbaseAddress:
+              type: string
+              description: The address receiving the coinbase reward.
+            coinbaseSignature:
+              type: string
+              description: The signature of the coinbase transaction.
+            coinbaseSignatureAscii:
+              type: string
+              description: The ASCII representation of the coinbase signature.
+            header:
+              type: string
+              description: The block header.
+            pool:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: The ID of the mining pool.
+                name:
+                  type: string
+                  description: The name of the mining pool.
+                slug:
+                  type: string
+                  description: The slug of the mining pool.
+              description: Information about the mining pool that mined the block.
+            matchRate:
+              type: number
+              description: The match rate of the block.
+            expectedFees:
+              type: integer
+              description: The expected fees in the block.
+            expectedWeight:
+              type: integer
+              description: The expected weight of the block.
+            similarity:
+              type: number
+              description: The similarity of the block.
