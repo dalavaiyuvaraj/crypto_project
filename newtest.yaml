@@ -6,30 +6,22 @@ info:
 paths:
   /v1/blocks:
     get:
-      summary: Get information about a Bitcoin block
-      description: Retrieve detailed information about a specific Bitcoin block identified by its ID.
-      parameters:
-        - name: block_id
-          in: path
-          description: The ID of the Bitcoin block
-          required: true
-          schema:
-            type: string
+      summary: Get information about Bitcoin blocks
+      description: Retrieve detailed information about Bitcoin blocks.
       responses:
         '200':
           description: Successful response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BitcoinBlock'
+                type: array
+                items:
+                  $ref: '#/components/schemas/BitcoinBlock'
 components:
   schemas:
     BitcoinBlock:
       type: object
       properties:
-        id:
-          type: string
-          description: The unique identifier of the Bitcoin block.
         height:
           type: integer
           description: The height of the block in the blockchain.
